@@ -1,0 +1,28 @@
+.book-info {
+  padding: 35px 25px 25px;
+  display: flex;
+}
+
+.book-info .book-top {
+  width: 140px;
+  padding: 0 20px 0 0;
+  margin: 0 10px 0 0;
+}
+
+.book-details {
+  display: block;
+}
+
+.book-info .book-title {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.book-info .book-author {
+
+}
+
+.book-info .book-description {
+  font-size: .8em;
+}

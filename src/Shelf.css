@@ -1,0 +1,10 @@
+.bookshelf {
+  padding: 0 0 20px;
+}
+
+@media (min-width: 600px) {
+  .bookshelf {
+    padding: 0 0 40px;
+  }
+}
+

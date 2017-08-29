@@ -1,0 +1,142 @@
+.search-books {
+  min-height: 100vh;
+  background-color: #F2E85C;
+}
+
+.search-books-button {
+  border: 0;
+  background: #00A19A;
+}
+
+.search-icon {
+  padding: 10px 15px;
+  margin: 0 10px;
+  mask: url('./icons/search.svg') no-repeat center/3em;
+  border: 0;
+  outline: none;
+  background-color: #fff;
+}
+
+.clear-query-button {
+  position: relative;
+  display: block;
+  width: 50px;
+  border: 0;
+  padding: 0;
+  background-color: #fff;
+  transform: scale(.7);
+}
+
+.clear-query-button.disabled {
+  display: none;
+}
+
+.close-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  mask: url('./icons/close.svg') no-repeat center/2.25em;
+  border: 0;
+  background-color: #ddd;
+}
+
+.search-books-bar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+  background-color: #fff;
+}
+.search-books-input-wrapper {
+  flex: 1;
+  background: #e9e;
+  position: relative;
+}
+.search-books-input-wrapper.placeholder:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 2px;
+  height: 1.5em;
+  background-color: #F53D54;
+}
+
+.search-books-bar input {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 1.25em;
+  border: none;
+  outline: none;
+}
+
+.close-search {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 53px;
+  font-size: 0;
+  background-color: #fff;
+}
+
+.close-search:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 53px;
+  mask: url('./icons/arrow-back.svg') no-repeat center/28px;
+  background-color: #F53D54;
+}
+
+.search-books-results,
+.search-books-results:before {
+  min-height: 100vh;
+}
+
+.search-books-results:before {
+  padding-top: 53px;
+  content: '';
+  display: block;
+  background-color: #fff;
+  mask: url('./icons/search.svg') no-repeat center/100px;
+  mask-origin: content-box;
+  opacity: .5;
+}
+
+.search-books-results.has-results {
+  background-color: transparent;
+  background-image: none;
+  padding: 95px 10px 20px;
+  mask: none;
+  opacity: 1;
+}
+
+.search-books-results.has-results:before {
+  display: none;
+}
+
+.search-books-results h4 {
+  color: #404040;
+  font-size: 1em;
+  font-weight: normal;
+  position: absolute;
+  top: 53px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 90px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .6;
+}

@@ -1,0 +1,40 @@
+.list-books-title {
+  padding: 10px 0;
+  background: #00A19A;
+  text-align: center;
+}
+.list-books-title h1 {
+  font-weight: 400;
+  margin: 0;
+  color: white;
+}
+
+.list-books {
+  padding: 0 0 40px;
+}
+
+.list-books h2 {
+  padding: 10px 15px;
+  margin: 0 0 25px;
+  background-color: #eee;
+  font-weight: normal
+}
+
+.list-books-content {
+  padding: 0 0 80px;
+  flex: 1;
+}
+
+.books-grid {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.books-grid li {
+  padding: 10px 15px;
+  text-align: left;
+}
