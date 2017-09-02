@@ -7,6 +7,12 @@ import './ListBooks.css'
 
 class ListBooks extends Component {
 
+  constructor() {
+    super()
+
+    this.onChangeShelf = this.onChangeShelf.bind(this)
+  }
+
   onChangeShelf(myShelf, book) {
     const { onChangeShelf } = this.props
     onChangeShelf(myShelf, book)
@@ -30,7 +36,7 @@ class ListBooks extends Component {
               book={book}
               myBooks={myBooks}
               shelfLabel={shelfLabel}
-              onChangeShelf={this.onChangeShelf.bind(this)}
+              onChangeShelf={this.onChangeShelf}
             />
           ))}
         </ol>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import { RouteTransition } from 'react-router-transition';
 import * as BooksAPI from './utils/BooksAPI'
 import Shelf from './Shelf'
 import BookInfo from './BookInfo'
@@ -57,27 +56,13 @@ class BooksApp extends Component {
 
     return (
       <div className="app">
-        <Route render={({location, history, match}) => (
-          <RouteTransition
-            pathname={location.pathname}
-            atEnter={{ opacity: 0 }}
-            atLeave={{ opacity: 0 }}
-            atActive={{ opacity: 1 }}
-            mapStyles={styles => ({
-              opacity: `${styles.opacity}`,
-              position: `absolute`,
-              top: 0
-            })}
-          >
-            <Route exact path='/' render={() => (
-              <Shelf shelves={shelves} myBooks={myBooks} onChangeShelf={this.onChangeShelf} />
-            )}/>
-            <Route path='/search' render={({ history }) => (
-              <SearchBooks myBooks={myBooks} onChangeShelf={this.onChangeShelf} />
-            )}/>
-            <Route path='/book/:bookId' component={BookInfo} />
-          </RouteTransition>
-        )} />
+        <Route exact path='/' render={() => (
+          <Shelf shelves={shelves} myBooks={myBooks} onChangeShelf={this.onChangeShelf} />
+        )}/>
+        <Route path='/search' render={({ history }) => (
+          <SearchBooks myBooks={myBooks} onChangeShelf={this.onChangeShelf} />
+        )}/>
+        <Route path='/book/:bookId' component={BookInfo} />
       </div>
     )
   }

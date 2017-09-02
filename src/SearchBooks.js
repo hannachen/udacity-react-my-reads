@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { throttle } from 'lodash'
 import * as BooksAPI from './utils/BooksAPI'
 import ListBooks from './ListBooks'
 import './SearchBooks.css'
@@ -13,40 +14,43 @@ class SearchBooks extends Component {
     books: []
   }
 
+  constructor() {
+    super()
+
+    this.updateQuery = this.updateQuery.bind(this)
+  }
+
+  componentWillMount() {
+    this.searchQuery = throttle(this.searchQuery, 100)
+  }
+
   componentDidMount() {
     this.searchInput.focus()
   }
 
-  onKeyDown = (event) => {
-    if(event.key === 'Enter') {
-      this.searchQuery()
-    }
-  }
-
   updateQuery(query) {
-    this.setState({ query, searching: false })
+    this.setState({ query, searching: true })
+    this.searchQuery(query)
   }
 
-  searchQuery() {
-    const { query } = this.state
+  searchQuery(query) {
     if (!query.length) {
-      this.searchInput.focus()
       return
     }
     BooksAPI.search(query.toLowerCase().trim(), 10)
       .then(results => {
         const books = results.error ? [] : results
-        this.setState({ books, searching: true })
+        this.setState({ books, searching: false })
       })
   }
 
   clearQuery() {
-    this.setState({ query: '', searching: false })
+    this.setState({ query: '', books: [] })
     this.searchInput.focus()
   }
 
   render() {
-    const { books, searching, query } = this.state
+    const { query, searching, books } = this.state
     const { myBooks, onChangeShelf } = this.props
     const disabled = !query.length > 0
 
@@ -65,7 +69,6 @@ class SearchBooks extends Component {
               value={query}
               ref={(input) => { this.searchInput = input }}
               onChange={(event) => this.updateQuery(event.target.value)}
-              onKeyDown={(event) => this.onKeyDown(event)}
               required={true}
             />
           </div>
@@ -77,12 +80,9 @@ class SearchBooks extends Component {
           >
             <span className="close-icon" />
           </button>
-          <button className="search-books-button" title="Search" type="submit" onClick={this.searchQuery.bind(this)}>
-            <span className="search-icon" />
-          </button>
         </div>
         <div className={classnames('search-books-results', { 'has-results': books.length })}>
-          {searching && query.length > 0 && books.length === 0 && (
+          {!searching && query.length > 0 && books.length === 0 && (
             <h4>No results for &rsquo;<strong>{query}</strong>&rsquo;</h4>
           )}
           <ListBooks

@@ -15,8 +15,8 @@ class Book extends Component {
     myShelf: 'none'
   }
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.onMouseEnter = this.onMouseEnter.bind(this)
     this.onMouseLeave = this.onMouseLeave.bind(this)
@@ -26,7 +26,7 @@ class Book extends Component {
     this.onChangeShelf = this.onChangeShelf.bind(this)
   }
 
-  componentDidMount() {
+  componentWillUnmount() {
     const { book, myBooks, openSelect } = this.props
     const shelf = myBooks.filter(myBook => myBook.id === book.id).shift() || []
     const myShelf = shelf.shelf || 'none'

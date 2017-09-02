@@ -15,7 +15,7 @@ class BookInfo extends Component {
     this.getBook = this.getBook.bind(this)
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { bookId } = this.props.match.params
     this.getBook(bookId)
   }
