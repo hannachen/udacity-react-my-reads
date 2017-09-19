@@ -26,10 +26,10 @@ class Book extends Component {
     this.onChangeShelf = this.onChangeShelf.bind(this)
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
     const { book, myBooks, openSelect } = this.props
-    const shelf = myBooks.filter(myBook => myBook.id === book.id).shift() || []
-    const myShelf = shelf.shelf || 'none'
+    const myBook = myBooks.find(myBook => myBook.id === book.id)
+    const myShelf = myBook ? myBook.shelf : 'none'
     this.setState({ openSelect, myShelf })
   }
 
